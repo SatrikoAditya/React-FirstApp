@@ -26,8 +26,8 @@ class App extends React.Component {
 
   render() {
 
-    const {teams} = this.state
-
+    const { teams } = this.state
+ 
     return (
       <>
         <h1 className="mb-4">Premier League Teams</h1>
