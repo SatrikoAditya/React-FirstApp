@@ -13,7 +13,7 @@ function useFetcher(path) {
     })
     .then(res => res.json())
     .then(data => {
-        setData(data.teams)
+        setData(data)
     })
     .catch(err => {
         setError(err)
@@ -23,7 +23,7 @@ function useFetcher(path) {
     })
     }, [path])
 
-    return { data, loading, error }
+    return { data , loading, error }
 }
 
 export default useFetcher

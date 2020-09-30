@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+.container-detail {
+  display: flex;
+}
+
+.container-info {
+  width: 20%;
+  margin-left: 2rem;
+  margin-top: 2rem;
+}
+
+.container-player {
+  width: 60%;
+  margin-left: 8rem;
+  margin-top: 50px;
+}
+
+.team-name {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+

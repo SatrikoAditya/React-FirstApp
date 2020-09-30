@@ -7,11 +7,14 @@ function useSearch() {
     const [filteredTeams, setFilteredTeams] = useState([])
 
     useEffect(() => {
-        setFilteredTeams(
-          data.filter(team => {
+      console.log(data)
+      if(data.teams) {
+        setFilteredTeams( 
+          data.teams.filter(team => {
             return team.name.toLowerCase().includes(search.toLowerCase())
           })
         )
+      }
     }, [search, data])
 
     return { filteredTeams, setSearch }
