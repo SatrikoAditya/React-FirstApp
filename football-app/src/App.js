@@ -6,21 +6,30 @@ import {
 } from 'react-router-dom'
 import {
   Home,
-  Details
+  Details,
+  Favorites
 } from './pages'
+import store from './store/'
+import { Provider } from 'react-redux'
+
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/details/:teamId">
-          <Details />
-        </Route>
-      </Switch>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/favorites">
+            <Favorites />
+          </Route>
+          <Route path="/details/:teamId">
+            <Details />
+          </Route>
+        </Switch>
+      </Router>
+    </Provider>
   )
 }
 

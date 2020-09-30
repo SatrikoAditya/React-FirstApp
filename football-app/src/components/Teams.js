@@ -1,5 +1,7 @@
 import React from 'react'
 import { useHistory} from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addFavorite } from '../store/actions/'
 
 // INI PAKAI CLASS COMPONENT
 // class Teams extends React.Component {
@@ -30,11 +32,16 @@ import { useHistory} from 'react-router-dom'
 // INI PAKAI HOOKS
 
 function Teams(props) {
+    const dispatch = useDispatch()
     const history = useHistory()
     const {crestUrl, name, id } = props.team
 
     function handleCLickButton(teamId) {
         history.push(`/details/${teamId}`)
+    }
+
+    function handleAddFavorites(image, name) {
+        dispatch(addFavorite(image, name))
     }
 
     return (
@@ -48,7 +55,8 @@ function Teams(props) {
                             alt="logo-team"
                         />
                         <h6 className="font-weight-bold my-3">{name}</h6>
-                        <button onClick={() => handleCLickButton(id)} className="btn btn-primary">Detail</button>
+                        <button onClick={() => handleCLickButton(id)} className="btn btn-primary mb-2 mt-2">See Detail</button>
+                        <button onClick={() => handleAddFavorites(crestUrl, name)} className="btn btn-warning">Add To Favorites</button>
                     </div>
                 </div>
             </div>
