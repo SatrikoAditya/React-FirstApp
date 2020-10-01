@@ -23,17 +23,16 @@ function Navbar() {
             []
         )
     function handleonChange(event) {
-        // dispatch(setSearch(event.target.value))
         const value = event.target.value
         debouncedSave(value)
     }
 
     return (
         <nav className="navbar navbar-light bg-light mb-4 sticky-top">
-            <a onClick={handleHome} className="navbar-brand" type="button">Premier League Teams </a>
-            <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+            <img style={{cursor: 'pointer'}} onClick={handleHome} src="https://www.fifplay.com/img/public/premier-league-3-logo.png" alt="logo" width="180px"></img>
+            <ul className="navbar-nav mr-auto mt-2 mt-lg-0 ml-3">
                 <li className="nav-item">
-                    <a onClick={handleFavorites} className="nav-link" type="button">Favorites</a>
+                    <button style={{border: 'none', background: 'none', padding: '0'}} onClick={handleFavorites} className="nav-link" type="button">My favorite teams!</button>
                 </li>
             </ul>
             <form className="form-inline">

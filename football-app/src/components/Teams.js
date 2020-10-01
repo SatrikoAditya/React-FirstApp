@@ -1,13 +1,12 @@
 import React from 'react'
 import { useHistory} from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addFavorite } from '../store/actions/'
 
 function Teams(props) {
     const dispatch = useDispatch()
     const history = useHistory()
     const {crestUrl, name, id } = props.team
-    const favorites = useSelector(state => state.favorites)
 
     function handleCLickButton(teamId) {
         history.push(`/details/${teamId}`)
