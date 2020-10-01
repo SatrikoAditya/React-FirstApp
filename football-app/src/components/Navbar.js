@@ -23,7 +23,7 @@ function Navbar() {
 
     return (
         <nav className="navbar navbar-light bg-light mb-4 sticky-top">
-            <a onClick={handleHome} className="navbar-brand">Premier League Teams </a>
+            <a onClick={handleHome} className="navbar-brand" type="button">Premier League Teams </a>
             <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li className="nav-item">
                     <a onClick={handleFavorites} className="nav-link" type="button">Favorites</a>
