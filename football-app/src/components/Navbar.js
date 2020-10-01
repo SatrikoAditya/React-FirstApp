@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useHistory} from 'react-router-dom'
 import {useSelector, useDispatch} from 'react-redux'
 import { setSearch } from '../store/actions/'
+import debounce from 'lodash.debounce'
 
 function Navbar() {
     const dispatch = useDispatch()
@@ -17,8 +18,14 @@ function Navbar() {
         history.push(`/favorites`)
     }
 
+    const debouncedSave = useCallback(
+            debounce((value) => dispatch(setSearch(value)), 500),
+            []
+        )
     function handleonChange(event) {
-        dispatch(setSearch(event.target.value))
+        // dispatch(setSearch(event.target.value))
+        const value = event.target.value
+        debouncedSave(value)
     }
 
     return (
