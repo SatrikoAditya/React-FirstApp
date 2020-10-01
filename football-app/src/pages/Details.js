@@ -1,12 +1,18 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Navbar from '../components/Navbar'
 import { useParams} from 'react-router-dom'
-import useFetcher from '../customHooks/useFetcher'
 import DetailTeam from '../components/DetailTeam'
+import {useSelector, useDispatch} from 'react-redux'
+import { getDetail } from '../store/actions/'
 
 function Details() {
     const { teamId } = useParams()
-    const { data, loading, error } = useFetcher(`/teams/${teamId}`)
+    const dispatch = useDispatch()
+    const {detail, loading, error} = useSelector(state => state.detailReducer)
+
+    useEffect(() => {
+        dispatch(getDetail(teamId))
+    }, [teamId, dispatch])
 
     if(loading) return <p>Loading...</p>
   
@@ -15,9 +21,17 @@ function Details() {
     return (
         <>
             <Navbar />
-            <DetailTeam detail={data} />
+            {
+                detail && <DetailTeam detail={detail} />
+            }
         </>
     )
 }
 
 export default Details
+
+
+// import useFetcher from '../customHooks/useFetcher'
+// const { data } = useFetcher(`/teams/${teamId}`)
+// const loading = useSelector(state => state.loading)
+// const error = useSelector(state => state.error)

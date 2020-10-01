@@ -4,7 +4,8 @@ import FavoriteList from '../components/FavoriteList'
 import { useSelector } from 'react-redux'
 
 function Favorites() {
-    const favorites = useSelector(state => state.favorites)
+    const favorites = useSelector(state => state.favoriteReducer.favorites)
+    
     return (
         <>
             <Navbar />

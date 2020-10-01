@@ -4,6 +4,7 @@ import detailStyle from '../style/detailStyle'
 function DetailTeam(props) {
     const {containerDetail, containerInfo, teamName, containerPlayer} = detailStyle
     const {crestUrl, name, address, phone, website, email, clubColors, venue, squad} = props.detail
+    
     return (
         <div className="container-detail" style={containerDetail}>
             <div className="container-info" style={containerInfo}>
@@ -38,7 +39,7 @@ function DetailTeam(props) {
                         </thead>
                         <tbody>
                             {
-                                squad.map(player => {
+                                squad && squad.map(player => {
                                     return (
                                         <tr key={player.id}>
                                             <th scope="row"> {player.name} </th>

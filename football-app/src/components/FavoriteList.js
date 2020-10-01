@@ -2,6 +2,7 @@ import React from 'react'
 
 function FavoriteList(props) {
     const {image, name } = props.favorite
+    
     return (
         <div className="card border-0 shadow mb-3 col-2 ml-2">
             <div className="card-body">

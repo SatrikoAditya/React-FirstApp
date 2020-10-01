@@ -1,24 +1,39 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Teams from '../components/Teams'
 import Navbar from '../components/Navbar'
-import useFetcher from '../customHooks/useFetcher'
-import useSearch from '../customHooks/useSearch'
+import {useSelector, useDispatch} from 'react-redux'
+import { getTeam, setFilteredTeam } from '../store/actions/'
 
 function Home() {
+    const test = useSelector(state => state)
+    console.log(test, "<<<< ini data di home")
+    const { loading, error, data, search, filteredTeams } = useSelector(state => state.dataReducer)
+    const dispatch = useDispatch()
 
-    const { loading, error } = useFetcher('/competitions/2021/teams')
-    const { filteredTeams, setSearch } = useSearch()
-  
+    useEffect(() => {
+      dispatch(getTeam())
+    }, [dispatch])
+
+    useEffect(() => {
+      if(data) {
+        dispatch(setFilteredTeam(
+          data.filter(team => {
+            return team.name.toLowerCase().includes(search.toLowerCase())
+          })
+        ))
+      }
+    }, [data, search, dispatch])
+
     if(loading) return <p>Loading...</p>
   
     if(error) return <p>error fetch</p>
-  
+
     return (
       <>
-        <Navbar setSearch={setSearch} />
+        <Navbar />
         <div className="d-flex flex-row justify-content-center flex-wrap">
         {
-              filteredTeams.map(team => {
+              filteredTeams[0] && filteredTeams.map(team => {
                 return (
                   <Teams team={team} key={team.id} />
                 )
@@ -77,3 +92,7 @@ function Home() {
 //   }
 // }
   
+
+// import useFetcher from '../customHooks/useFetcher'
+// import useSearch from '../customHooks/useSearch'
+// const { filteredTeams, setSearch } = useSearch()
